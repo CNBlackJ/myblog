@@ -1,0 +1,30 @@
+{
+  "settings": {
+    "number_of_shards": 20,
+    "number_of_replicas": 2
+  },
+  "mappings": {
+    "blog": {
+      "dynamic": "strict",
+      "properties": {
+        "userUUID": {
+          "index": "not_analyzed",
+          "type": "string"
+        },
+        "userId": {
+          "type": "long"
+        },
+        "userName": {
+          "type": "string"
+        },
+        "email": {
+          "index": "not_analyzed",
+          "type": "string"
+        },
+        "sex": {
+          "type": "long"
+        }
+      }
+    }
+  }
+}
