@@ -22,7 +22,7 @@ router.post('/', async (req, res) => {
   if (isRemember) {
     res.cookie('logIn', logIn + 1);
   }
-  User.find({ email, passwd }, (err, user) => {
+  await User.find({ email, passwd }, (err, user) => {
     if (err) return console.log(err);
     res.render('index', { user });
   });

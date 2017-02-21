@@ -15,10 +15,10 @@ router.post('/', async (req, res) => {
   const email = req.body.email;
   const passwd = req.body.password;
 
-  User.create({ email, passwd }, (err) => {
+  await User.create({ email, passwd }, (err) => {
     if (err) return console.log(err);
     res.cookie('logIn', logIn + 1);
-    res.send("<a href='/>Sign Up Success!</a>");
+    res.render('index');
   });
 });
 

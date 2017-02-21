@@ -6,11 +6,7 @@ const cookieParser = require('cookie-parser');
 const cookieSession = require('cookie-session');
 const bodyParser = require('body-parser');
 const pkg = require('./package');
-
-const index = require('./routes/index');
-const users = require('./routes/users');
-const login = require('./routes/login');
-const signUp = require('./routes/sign_up');
+const routes = require('./routes/app');
 
 const app = express();
 
@@ -35,10 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // app.use(express.cookieParser());
 app.use(cookieSession({ secret: 'secret', cookie: { maxAge: 60 * 60 * 100 } }));
 
-app.use('/', index);
-app.use('/users', users);
-app.use('/login', login);
-app.use('/sign_up', signUp);
+routes(app);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
