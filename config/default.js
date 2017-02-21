@@ -4,4 +4,8 @@ module.exports = {
     index: 'db',
     type: 'blog',
   },
+  mongodb: {
+    host: 'localhost',
+    port: '27017',
+  },
 };

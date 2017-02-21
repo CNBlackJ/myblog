@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "start": "supervisor ./bin/www"
+  },
   "settings": {
     "number_of_shards": 20,
     "number_of_replicas": 2

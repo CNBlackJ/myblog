@@ -1,8 +1,8 @@
 const express = require('express');
 
 const router = express.Router();
-const User = require('../models/user');
-// const validator = require('validator');
+
+const User = require('../lib/Database');
 
 
 /* Get Sign Up page */
@@ -11,14 +11,15 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-  const isSignUp = 0;
+  const logIn = 0;
   const email = req.body.email;
   const passwd = req.body.password;
-  // validator.isEmail(email);
 
-  await User.signUp(email, passwd);
-  res.cookie('isSignUp', isSignUp + 1);
-  res.render('index');
+  User.create({ email, passwd }, (err) => {
+    if (err) return console.log(err);
+    res.cookie('logIn', logIn + 1);
+    res.send("<a href='/>Sign Up Success!</a>");
+  });
 });
 
 module.exports = router;
