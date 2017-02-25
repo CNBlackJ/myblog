@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router();
 
 const User = require('../lib/Database');
+const loginController = require('../controllers/login');
 
 /* Get login page */
 router.get('/', (req, res) => {

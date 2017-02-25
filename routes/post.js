@@ -2,6 +2,8 @@ const express = require('express');
 
 const router = express.Router();
 
+const postController = require('../controllers/post');
+
 /* GET posts page. */
 router.get('/', (req, res) => {
   res.render('posts');
