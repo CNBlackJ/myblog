@@ -1,6 +1,6 @@
-const mogoose = require('../lib/Database');
+const mongoose = require('../lib/Database');
 
-const chema = {
+const schema = {
   email: String,
   passwd: String
 };

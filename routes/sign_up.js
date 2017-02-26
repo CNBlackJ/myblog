@@ -2,8 +2,7 @@ const express = require('express');
 
 const router = express.Router();
 
-const User = require('../lib/Database');
-
+const User = require('../models/user');
 
 /* Get Sign Up page */
 router.get('/', (req, res) => {
