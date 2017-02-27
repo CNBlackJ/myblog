@@ -1,13 +1,13 @@
 const mongoose = require('../lib/Database');
 
 const schema = {
-  title: string,
-  content: text,
-  author: string,
-  published: date
+  title: String,
+  content: String,
+  author: String,
+  published: Date
 };
 
-const postSchema = mongoose.Schema({ schema });
+const postSchema = mongoose.Schema(schema);
 
 const Post = mongoose.model('Post', postSchema);
 

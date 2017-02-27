@@ -1,5 +1,23 @@
 <%- include('_header') %>
 
 <h1>Show POSTS</h1>
+<table class="table table-hover">
+  <tr>
+    <td>ID</td>
+    <td>Title</td>
+    <td>Content</td>
+    <td>Author</td>
+    <td>Published</td>
+  </tr>
+  <% posts.forEach((post, index) => {  %>
+    <tr>
+      <td><%= index + 1 %></td>
+      <td><%= post.title %></td>
+      <td><%= post.content %></td>
+      <td><%= post.author %></td>
+      <td><%= post.published %></td>
+    </tr>
+  <% }) %>
 
+</table>
 <%- include('_footer') %>

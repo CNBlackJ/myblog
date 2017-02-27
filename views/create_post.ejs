@@ -1,103 +1,14 @@
 <%- include('_header') %>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
-<script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
 
 <h1>Create Post</h1>
 
-<form class="col-md-8 col-md-offset-3">
-  <div class="form-group">
-    <div id="content"></div>
-  </div>
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-      <button type="submit" class="btn btn-default">Sign in</button>
-    </div>
-  </div>
+<form method="post" action="/posts/create">
+  <input name="title" type="text" placeholder="Title" />
+  <br>
+  <textarea name="content" data-provide="markdown" rows="10"></textarea>
+  <input type="text" name="author" placeholder="Author">
+  <hr/>
+  <button type="submit" class="btn">Submit</button>
 </form>
-
-<script>
-  // Most options demonstrate the non-default behavior
-  var simplemde = new SimpleMDE({
-     toolbar: [{
-            name: "bold",
-            action: SimpleMDE.toggleBold,
-            className: "fa fa-bold",
-            title: "Bold",
-        },
-        {
-            name: "custom",
-            action: function customFunction(editor){
-                // Add your own code
-            },
-            className: "fa fa-star",
-            title: "Custom Button",
-        }],
-      autofocus: true,
-      autosave: {
-          enabled: true,
-          uniqueId: "MyUniqueID",
-          delay: 1000,
-      },
-      blockStyles: {
-          bold: "__",
-          italic: "_"
-      },
-      element: document.getElementById("content"),
-      forceSync: true,
-      hideIcons: ["guide", "heading"],
-      indentWithTabs: false,
-      initialValue: "Hello world!",
-      insertTexts: {
-          horizontalRule: ["", "\n\n-----\n\n"],
-          image: ["![](http://", ")"],
-          link: ["[", "](http://)"],
-          table: ["", "\n\n| Column 1 | Column 2 | Column 3 |\n| -------- | -------- | -------- |\n| Text     | Text      | Text     |\n\n"],
-      },
-      lineWrapping: false,
-      parsingConfig: {
-          allowAtxHeaderWithoutSpace: true,
-          strikethrough: false,
-          underscoresBreakWords: true,
-      },
-      placeholder: "Type here...",
-      previewRender: function(plainText) {
-          return customMarkdownParser(plainText); // Returns HTML from a custom parser
-      },
-      previewRender: function(plainText, preview) { // Async method
-          setTimeout(function(){
-              preview.innerHTML = customMarkdownParser(plainText);
-          }, 250);
-
-          return "Loading...";
-      },
-      promptURLs: true,
-      renderingConfig: {
-          singleLineBreaks: false,
-          codeSyntaxHighlighting: true,
-      },
-      shortcuts: {
-          drawTable: "Cmd-Alt-T"
-      },
-      showIcons: ["code", "table"],
-      spellChecker: false,
-      status: false,
-      status: ["autosave", "lines", "words", "cursor"], // Optional usage
-      status: ["autosave", "lines", "words", "cursor", {
-          className: "keystrokes",
-          defaultValue: function(el) {
-              this.keystrokes = 0;
-              el.innerHTML = "0 Keystrokes";
-          },
-          onUpdate: function(el) {
-              el.innerHTML = ++this.keystrokes + " Keystrokes";
-          }
-      }], // Another optional usage, with a custom status bar item that counts keystrokes
-      styleSelectedText: false,
-      tabSize: 4,
-      toolbar: false,
-      toolbarTips: false,
-  });
-  simplemde.value("Hello");
-</script>
 
 <%- include('_footer') %>
