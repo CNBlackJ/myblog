@@ -2,13 +2,12 @@ const express = require('express');
 
 const router = express.Router();
 
-const postController = require('../controllers/post');
 const Post = require('../models/post');
 
 /* GET posts page. */
 router.get('/', async (req, res) => {
-  const posts = await Post.find({}, {'__v': 0, '_id': 0}).limit(10);
-  res.render('posts', {posts: posts});
+  const posts = await Post.find({}, { __v: 0 }).limit(10);
+  res.render('posts', { posts });
 });
 
 // get create post page
@@ -22,12 +21,23 @@ router.post('/create', async (req, res) => {
   const author = req.body.author;
   const content = req.body.content;
   const published = Date.now();
-  console.log(title, author, content, published);
-  await Post.create({ title, content, author, published }, (err) => {
-    if (err) return console.log(err);
-    res.render('index');
+  const post = { title, content, author, published };
+  const isCreated = await Post.create(post, (err) => {
+    if (err) return false;
+    return true;
   });
-  res.render('create_post');
+  if (isCreated) {
+    res.render('show_post', { post });
+  } else {
+    res.render('create_post');
+  }
+});
+
+// show post
+router.get('/:id', async (req, res) => {
+  const id = req.params.id;
+  const post = await Post.find({ _id: id }, { __V: 0 });
+  res.render('show_post', { post: post[0]._doc });
 });
 
 // edit post

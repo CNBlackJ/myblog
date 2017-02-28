@@ -12,7 +12,11 @@
   <% posts.forEach((post, index) => {  %>
     <tr>
       <td><%= index + 1 %></td>
-      <td><%= post.title %></td>
+      <td>
+        <a href='/posts/<%= post._id %>'>
+          <%= post.title %>
+        </a>
+      </td>
       <td><%= post.content %></td>
       <td><%= post.author %></td>
       <td><%= post.published %></td>
