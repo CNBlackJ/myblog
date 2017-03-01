@@ -8,6 +8,7 @@
     <td>Content</td>
     <td>Author</td>
     <td>Published</td>
+    <td>#</td>
   </tr>
   <% posts.forEach((post, index) => {  %>
     <tr>
@@ -20,6 +21,11 @@
       <td><%= post.content %></td>
       <td><%= post.author %></td>
       <td><%= post.published %></td>
+      <td>
+        <a href='/posts/<%= post._id %>' data-method='delete'>
+          DELETE
+        </a>
+      </td>
     </tr>
   <% }) %>
 
