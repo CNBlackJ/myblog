@@ -4,7 +4,8 @@ const schema = {
   title: String,
   content: String,
   author: String,
-  published: Date
+  published: Boolean,
+  createdDate: String,
 };
 
 const postSchema = mongoose.Schema(schema);
