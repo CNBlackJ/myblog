@@ -1,10 +1,18 @@
 <%- include('_header') %>
 
-<h1>show one post</h1>
-<hr>
-<blockquote>
-  <p><%= post.content %></p>
-  <footer>《<%= post.title %>》<cite title="Source Title"><%= post.author %></cite></footer>
-</blockquote>
+<script src="/marked/lib/marked.js"></script>
+<link rel="stylesheet" href="/stylesheets/show_post.css">
+
+<div class="uk-grid">
+  <div class="uk-width-3-5 uk-push-1-5">
+    <article class="uk-article">
+        <h1 class="uk-article-title">
+          <%= post.title %>
+        </h1>
+        <p class="uk-article-meta">Black_J | <%= post.createdDate %></p>
+        <%- post.content %>
+    </article>
+  </div>
+</div>
 
 <%- include('_footer') %>

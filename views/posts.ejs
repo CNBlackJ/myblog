@@ -1,17 +1,22 @@
 <%- include('_header') %>
 
+<link rel="stylesheet" href="/stylesheets/post.css">
+
 <div class="uk-grid">
-  <div class="uk-container-center">
-    <ul class="uk-list">
-      <% posts.forEach((post, index) => {  %>
-        <li>
-          <a href='/posts/<%= post._id %>'>
-            <%= post.title %>
-          </a>
-          <%= post.published %>
-        </li>
-      <% }) %>
-    </ul>
+  <div class="uk-container-center width-50">
+    <% posts.forEach((post, index) => {  %>
+        <div class="uk-grid">
+          <span class="uk-text-large uk-width-1-2">
+            <a href='/posts/<%= post._id %>'>
+              <%= post.title %>
+            </a>
+          </span>
+
+          <span class="uk-text-small uk-text-muted uk-text-bottom uk-width-1-2">
+            <%= post.createdDate %>
+          </span>
+        </div>
+    <% }) %>
   </div>
 </div>
 
