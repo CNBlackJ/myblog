@@ -2,6 +2,7 @@ const express = require('express');
 
 const router = express.Router();
 const moment = require('moment');
+const marked = require('marked');
 
 const Post = require('../models/post');
 
@@ -35,6 +36,7 @@ router.get('/:id', (req, res) => {
   const id = req.params.id;
   Post.find({ _id: id }, { __V: 0 }, (err, result) => {
     const post = result[0]._doc;
+    post.content = marked(post.content);
     res.render('show_post', { post });
   });
 });
