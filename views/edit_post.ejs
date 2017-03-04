@@ -1,0 +1,12 @@
+<%- include('_header') %>
+<script src="/javascripts/marked.js"></script>
+
+<h1>Edit Post</h1>
+
+<div id="content"></div>
+<script>
+  document.getElementById('content').innerHTML =
+    marked('# Marked in browser\n\nRendered by **marked**.');
+</script>
+
+<%- include('_footer') %>

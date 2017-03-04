@@ -3,18 +3,21 @@ const path = require('path');
 // const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
+const cookieSession = require('cookie-session');
 const bodyParser = require('body-parser');
-
-const index = require('./routes/index');
-const users = require('./routes/users');
-const login = require('./routes/login');
-const signUp = require('./routes/sign_up');
+const pkg = require('./package');
+const routes = require('./routes/app');
 
 const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+// set global title
+app.locals.blog = {
+  title: pkg.name,
+};
 
 // uncomment after placing your favicon in /public
 // app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -24,10 +27,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
-app.use('/users', users);
-app.use('/login', login);
-app.use('/sign_up', signUp);
+// use cookie for login
+// app.use(express.cookieParser());
+app.use(cookieSession({ secret: 'secret', cookie: { maxAge: 60 * 60 * 100 } }));
+
+routes(app);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
