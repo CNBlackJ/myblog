@@ -2,7 +2,6 @@ const express = require('express');
 
 const router = express.Router();
 
-const loginController = require('../controllers/login');
 const User = require('../models/user');
 
 /* Get login page */
@@ -14,7 +13,7 @@ router.get('/', (req, res) => {
   }
 });
 
-router.post('/', async (req, res) => {
+router.post('/', (req, res) => {
   const logIn = 0;
   const email = req.body.email;
   const passwd = req.body.password;
@@ -23,8 +22,8 @@ router.post('/', async (req, res) => {
   if (isRemember) {
     res.cookie('logIn', logIn + 1);
   }
-  await User.find({ email, passwd }, (err, user) => {
-    if (err) return console.log(err);
+  User.find({ email, passwd }, (err, user) => {
+    if (err) res.send(err.message);
     res.render('index', { user });
   });
 });
