@@ -1,6 +1,7 @@
 const express = require('express');
 
 const router = express.Router();
+const moment = require('moment');
 
 const Post = require('../models/post');
 
@@ -16,28 +17,26 @@ router.get('/create', (req, res) => {
 });
 
 // create post
-router.post('/create', async (req, res) => {
+router.post('/create', (req, res) => {
   const title = req.body.title;
-  const author = req.body.author;
+  const author = 'Black_J';
   const content = req.body.content;
-  const published = Date.now();
-  const post = { title, content, author, published };
-  const isCreated = await Post.create(post, (err) => {
-    if (err) return false;
-    return true;
+  const published = req.body.published;
+  const createdDate = moment(Date.now()).format('MMM Do YYYY');
+  const post = { title, content, author, published, createdDate };
+  Post.create(post, (err, result) => {
+    if (err) res.send(err.message);
+    res.redirect(`/posts/${result._id}`);
   });
-  if (isCreated) {
-    res.render('show_post', { post });
-  } else {
-    res.render('create_post');
-  }
 });
 
 // show post
-router.get('/:id', async (req, res) => {
+router.get('/:id', (req, res) => {
   const id = req.params.id;
-  const post = await Post.find({ _id: id }, { __V: 0 });
-  res.render('show_post', { post: post[0]._doc });
+  Post.find({ _id: id }, { __V: 0 }, (err, result) => {
+    const post = result[0]._doc;
+    res.render('show_post', { post });
+  });
 });
 
 // edit post
@@ -46,10 +45,12 @@ router.put('/:id/edit', (req, res) => {
 });
 
 // delete post
-router.delete('/:id', async (req, res) => {
+router.get('/:id/delete', async (req, res) => {
   const id = req.params.id;
-  await Post.findOne({ _id: id }).remove().exec();
-  res.redirect('/posts');
+  Post.findByIdAndRemove(id, (err) => {
+    if (err) res.send(err.message);
+    res.redirect('/posts');
+  });
 });
 
 module.exports = router;
