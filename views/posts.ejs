@@ -1,6 +1,6 @@
 <%- include('_header') %>
 
-<h1>Show POSTS</h1>
+<h1>POSTS</h1>
 <table class="table table-hover">
   <tr>
     <td>ID</td>
@@ -22,7 +22,7 @@
       <td><%= post.author %></td>
       <td><%= post.published %></td>
       <td>
-        <a href='/posts/<%= post._id %>' data-method='delete'>
+        <a href='/posts/<%= post._id %>/delete'>
           DELETE
         </a>
       </td>
