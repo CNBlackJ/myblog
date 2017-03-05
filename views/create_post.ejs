@@ -10,8 +10,12 @@
 <script src="/marked/lib/marked.js"></script>
 
 <!-- HTML 编辑器的 CSS 与 JavaScript -->
-<link rel="stylesheet" href="/stylesheets/htmleditor.css">
-<script src="/javascripts/htmleditor.js"></script>
+<link rel="stylesheet" href="/stylesheets/components/htmleditor.css">
+<script src="/javascripts/components/htmleditor.js"></script>
+
+<script type="text/javascript" src="/javascripts/common.js">
+
+</script>
 
 <link rel="stylesheet" href="/stylesheets/create_post.css">
 
@@ -45,5 +49,8 @@
   </div>
 </form>
 
+<script type="text/javascript">
+  UIkit.notify('<%= notify.info %>', { pos: '<%= notify.pos %>', status: '<%= notify.status %>' });
+</script>
 
 <%- include('_footer') %>

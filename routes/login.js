@@ -1,26 +1,24 @@
 const express = require('express');
 
 const router = express.Router();
-
 const User = require('../models/user');
 
 /* Get login page */
 router.get('/', (req, res) => {
-  if (req.cookies.logIn) {
-    res.render('index');
+  if (req.cookies.user) {
+    res.redirect('/');
   } else {
-    res.render('login');
+    res.redirect('login');
   }
 });
 
 router.post('/', (req, res) => {
-  const logIn = 0;
   const email = req.body.email;
   const passwd = req.body.password;
   const isRemember = req.body.isRemember;
 
   if (isRemember) {
-    res.cookie('logIn', logIn + 1);
+    res.cookie('user', email);
   }
   User.find({ email, passwd }, (err, user) => {
     if (err) res.send(err.message);
