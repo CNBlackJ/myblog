@@ -4,6 +4,7 @@ const router = express.Router();
 const moment = require('moment');
 const marked = require('marked');
 
+const checkLogin = require('../lib/check').checkLogin;
 const Post = require('../models/post');
 
 /* GET posts page. */
@@ -13,12 +14,13 @@ router.get('/', async (req, res) => {
 });
 
 // get create post page
-router.get('/create', (req, res) => {
-  res.render('create_post');
+router.get('/create', checkLogin, (req, res) => {
+  const notify = { info: `Let's very welcome: ${req.cookies.user}`, pos: 'top-center', status: 'success' };
+  res.render('create_post', { notify });
 });
 
 // create post
-router.post('/create', (req, res) => {
+router.post('/create', checkLogin, (req, res) => {
   const title = req.body.title;
   const author = 'Black_J';
   const content = req.body.content;

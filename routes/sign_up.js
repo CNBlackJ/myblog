@@ -9,13 +9,13 @@ router.get('/', (req, res) => {
   res.render('sign_up', { title: 'Sign Up' });
 });
 
-router.post('/', async (req, res) => {
+router.post('/', (req, res) => {
   const logIn = 0;
   const email = req.body.email;
   const passwd = req.body.password;
 
-  await User.create({ email, passwd }, (err) => {
-    if (err) return console.log(err);
+  User.create({ email, passwd }, (err) => {
+    if (err) res.send(err.message);
     res.cookie('logIn', logIn + 1);
     res.render('index');
   });
