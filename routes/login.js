@@ -5,11 +5,8 @@ const User = require('../models/user');
 
 /* Get login page */
 router.get('/', (req, res) => {
-  if (req.cookies.user) {
-    res.redirect('/');
-  } else {
-    res.redirect('login');
-  }
+  if (req.cookies.user) res.redirect('/');
+  res.render('login');
 });
 
 router.post('/', (req, res) => {
