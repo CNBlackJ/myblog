@@ -10,7 +10,8 @@ const Post = require('../models/post');
 /* GET posts page. */
 router.get('/', async (req, res) => {
   const posts = await Post.find({}, { __v: 0 }).limit(10);
-  res.render('posts', { posts });
+  const isAdmin = !!req.cookies.user;
+  res.render('posts', { posts, isAdmin });
 });
 
 // get create post page
@@ -43,9 +44,24 @@ router.get('/:id', (req, res) => {
   });
 });
 
+// get edit post page
+router.get('/:id/edit', (req, res) => {
+  const id = req.params.id;
+  Post.find({ _id: id }, { __V: 0 }, (err, result) => {
+    if (err) res.send(err.message);
+    const post = result[0]._doc;
+    res.render('edit_post', { post });
+  });
+});
+
 // edit post
-router.put('/:id/edit', (req, res) => {
-  res.render('edit_post');
+router.post('/:id/edit', (req, res) => {
+  const id = req.params.id;
+  Post.find({ _id: id }, { __V: 0 }, (err, result) => {
+    const post = result[0]._doc;
+    post.content = marked(post.content);
+    res.render('show_post', { post });
+  });
 });
 
 // delete post
