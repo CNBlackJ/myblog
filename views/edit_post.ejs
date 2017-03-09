@@ -1,12 +1,12 @@
 <%- include('_header') %>
-<script src="/javascripts/marked.js"></script>
 
-<h1>Edit Post</h1>
+<%- include('_create_edit') %>
 
-<div id="content"></div>
-<script>
-  document.getElementById('content').innerHTML =
-    marked('# Marked in browser\n\nRendered by **marked**.');
-</script>
+<script type="text/javascript" src="/javascripts/common.js"></script>
+<link rel="stylesheet" href="/stylesheets/create_post.css">
+
+<form class="uk-form uk-form-horizontal" action="/posts/edit" method="POST">
+  <%- include('_create_post_form') %>
+</form>
 
 <%- include('_footer') %>

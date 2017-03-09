@@ -2,6 +2,7 @@ const express = require('express');
 
 const router = express.Router();
 const User = require('../models/user');
+const _ = require('lodash');
 
 /* Get login page */
 router.get('/', (req, res) => {
@@ -14,12 +15,10 @@ router.post('/', (req, res) => {
   const passwd = req.body.password;
   const isRemember = req.body.isRemember;
 
-  if (isRemember) {
-    res.cookie('user', email);
-  }
-  User.find({ email, passwd }, (err, user) => {
-    if (err) res.send(err.message);
-    res.render('index', { user });
+  User.findOne({ email, passwd }, (err, user) => {
+    if (err || _.isEmpty(user)) res.render('login');
+    if (isRemember) res.cookie('user', user._id);
+    res.redirect('/');
   });
 });
 
