@@ -10,14 +10,17 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-  const logIn = 0;
-  const email = req.body.email;
-  const passwd = req.body.password;
+  const formValue = req.body;
+  const user = {
+    name: formValue.name,
+    email: formValue.email,
+    passwd: formValue.password,
+  };
 
-  User.create({ email, passwd }, (err) => {
+  User.create(user, (err, response) => {
     if (err) res.send(err.message);
-    res.cookie('logIn', logIn + 1);
-    res.render('index');
+    res.cookie('user', response._id);
+    res.redirect('/');
   });
 });
 
