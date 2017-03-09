@@ -6,13 +6,28 @@ const checkLogin = require('../lib/check').checkLogin;
 const Profile = require('../models/profile');
 
 // get create profile page
-router.get('/create', checkLogin, (req, res) => {
-  res.render('create_profile');
+router.get('/update', (req, res) => {
+  res.render('update_profile');
 });
 
 // create profile
 router.post('/create', checkLogin, (req, res) => {
-  res.redirect('/');
+  const formValue = req.body;
+  const profile = {
+    name: formValue.name,
+    gender: formValue.gender,
+    introduction: formValue.introduction,
+    social_link1: formValue.link_one,
+    social_link2: formValue.link_two,
+    social_link3: formValue.link_three,
+    social_link4: formValue.link_four,
+    contact: formValue.contact,
+  };
+
+  Profile.create(profile, (err) => {
+    if (err) res.send(err.message);
+    res.render('index');
+  });
 });
 
 // edit profile

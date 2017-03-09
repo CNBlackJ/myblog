@@ -3,7 +3,7 @@ const mongoose = require('../lib/Database');
 // Belongs_to user 1:1
 const schema = {
   name: String,
-  sex: Number,
+  gender: Number,
   avatar: String,
   introduction: String,
   social_link1: Object,
