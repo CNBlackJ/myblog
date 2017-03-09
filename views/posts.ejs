@@ -5,16 +5,24 @@
 <div class="uk-grid">
   <div class="uk-container-center width-50">
     <% posts.forEach((post, index) => {  %>
+      <% const width = isAdmin ? 'uk-width-1-3' : 'uk-width-1-2' %>
         <div class="uk-grid">
-          <span class="uk-text-large uk-width-1-2">
+          <span class="uk-text-large <%= width %>">
             <a href='/posts/<%= post._id %>'>
               <%= post.title %>
             </a>
           </span>
 
-          <span class="uk-text-small uk-text-muted uk-text-bottom uk-width-1-2">
+          <span class="uk-text-small uk-text-muted uk-text-bottom <%= width %>">
             <%= post.createdDate %>
           </span>
+          <% if (isAdmin) { %>
+            <span class="uk-text-small uk-text-muted uk-text-bottom <%= width %>">
+              <a href="/posts/<%= post.id %>/edit">
+                <i class="uk-icon-edit"></i>
+              </a>
+            </span>
+          <% } %>
         </div>
     <% }) %>
   </div>

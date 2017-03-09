@@ -9,15 +9,18 @@ router.get('/', (req, res) => {
   res.render('sign_up', { title: 'Sign Up' });
 });
 
-router.post('/', async (req, res) => {
-  const logIn = 0;
-  const email = req.body.email;
-  const passwd = req.body.password;
+router.post('/', (req, res) => {
+  const formValue = req.body;
+  const user = {
+    name: formValue.name,
+    email: formValue.email,
+    passwd: formValue.password,
+  };
 
-  await User.create({ email, passwd }, (err) => {
-    if (err) return console.log(err);
-    res.cookie('logIn', logIn + 1);
-    res.render('index');
+  User.create(user, (err, response) => {
+    if (err) res.send(err.message);
+    res.cookie('user', response._id);
+    res.redirect('/');
   });
 });
 

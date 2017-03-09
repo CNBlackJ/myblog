@@ -2,32 +2,46 @@
 
 <h1>Sign Up Page</h1>
 
-<div class="col-md-6 col-md-offset-3">
-  <form class="form-horizontal" action='/sign_up' method='post'>
-    <div class="form-group">
-      <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
-      <div class="col-sm-10">
-        <input type="email" required="required" class="form-control" id="inputEmail3" name="email" placeholder="Email">
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="password" class="col-sm-2 control-label">Password</label>
-      <div class="col-sm-10">
-        <input pattern=".{6,18}" type="password" required="required" class="form-control" id="password" name="password" placeholder="Password">
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="comfirn_password" class="col-sm-2 control-label">Comfirn Password</label>
-      <div class="col-sm-10">
-        <input pattern=".{6,18}" oninput="check(this)" type="password" required="required" class="form-control" id="comfirn_passwd" name="confirm_password" placeholder="Comfirn Password">
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="col-sm-offset-2 col-sm-10">
-        <button type="submit" class="btn btn-default">Sign Up</button>
-      </div>
-    </div>
-  </form>
+<div class="uk-grid">
+  <div class="uk-container-center">
+    <form class="uk-form uk-width-medium-1-3" action="/sign_up" method="post">
+      <fieldset>
+        <legend>Sign Up</legend>
+        <div class="uk-form-row">
+          <label for="name" class="uk-form-label">Name</label>
+          <div class="uk-form-controls">
+            <input type="text" name="name" required="required" placeholder="name" autofocus="autofocus">
+          </div>
+        </div>
+
+        <div class="uk-form-row">
+          <label for="email" class="uk-form-label">Email</label>
+          <div class="uk-form-controls">
+            <input type="email" name="email" required="required" placeholder="email" autofocus="autofocus">
+          </div>
+        </div>
+
+        <div class="uk-form-row">
+          <label for="password">Password</label>
+          <div class="uk-form-controls uk-form-password">
+            <input type="password" name="password" required="required" placeholder="password">
+            <a href="" class="uk-form-password-toggle" data-uk-form-password>show</a>
+          </div>
+        </div>
+        <div class="uk-form-row">
+          <label for="password_confirm">Confirm Password</label>
+          <div class="uk-form-controls uk-form-password">
+            <input type="password" name="password_confirm" value="" placeholder="confirm password">
+            <a href="" class="uk-form-password-toggle" data-uk-form-password>show</a>
+          </div>
+        </div>
+        <div class="uk-form-row">
+          <button class="uk-button-success" type="submit" name="button">Sign Up</button>
+          <a class="uk-button-primary" href="/login">Sign In</a>
+        </div>
+      </fieldset>
+    </form>
+  </div>
 </div>
 
 <script language='javascript' type='text/javascript'>

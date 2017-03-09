@@ -1,18 +1,8 @@
 <%- include('_header') %>
 
-<!-- Codemirror 和 marked 依赖 -->
-<link rel="stylesheet" href="/codemirror/lib/codemirror.css">
-<script src="/codemirror/lib/codemirror.js"></script>
-<script src="/codemirror/mode/markdown/markdown.js"></script>
-<script src="/codemirror/addon/mode/overlay.js"></script>
-<script src="/codemirror/mode/xml/xml.js"></script>
-<script src="/codemirror/mode/gfm/gfm.js"></script>
-<script src="/marked/lib/marked.js"></script>
+<%- include('_create_edit') %>
 
-<!-- HTML 编辑器的 CSS 与 JavaScript -->
-<link rel="stylesheet" href="/stylesheets/htmleditor.css">
-<script src="/javascripts/htmleditor.js"></script>
-
+<script type="text/javascript" src="/javascripts/common.js"></script>
 <link rel="stylesheet" href="/stylesheets/create_post.css">
 
 <form class="uk-form uk-form-horizontal" action="/posts/create" method="POST">
@@ -21,7 +11,7 @@
     <div class="uk-form-controls">
       <div class="uk-grid">
         <div class="uk-width-1-2">
-          <input type="text" name="title" placeholder="Title">
+          <input type="text" name="title" placeholder="Title" class="uk-form-width-large">
         </div>
         <div class="uk-width-1-2">
           <button type="submit" name="button" class="uk-button-success save">Save</button>
