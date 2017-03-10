@@ -15,56 +15,56 @@
       <div class="uk-form-row">
         <label for="name" class="uk-form-label">Name:</label>
         <div class="uk-form-controls">
-          <input type="text" name="name" placeholder="Name" class="uk-form-width-medium">
+          <input value="<%= profile.name %>" type="text" name="name" placeholder="Name" class="uk-form-width-medium">
         </div>
       </div>
 
       <div class="uk-form-row">
         <label for="gender" class="uk-form-label">Gender:</label>
         <div class="uk-form-controls">
-          <input type="text" name="gender" placeholder="Gender" class="uk-form-width-medium">
+          <input value="<%= profile.gender %>" type="text" name="gender" placeholder="Gender" class="uk-form-width-medium">
         </div>
       </div>
 
       <div class="uk-form-row">
         <label for="introduction" class="uk-form-label">Introduction:</label>
         <div class="uk-form-controls">
-          <input type="text" name="introduction" placeholder="Introduction" class="uk-form-width-medium">
+          <input value="<%= profile.introduction %>" type="text" name="introduction" placeholder="Introduction" class="uk-form-width-medium">
         </div>
       </div>
 
       <div class="uk-form-row">
-        <label for="link_one" class="uk-form-label">Link one:</label>
+        <label for="github" class="uk-form-label">Github:</label>
         <div class="uk-form-controls">
-          <input type="text" name="link_one" placeholder="social link one" class="uk-form-width-medium">
+          <input value="<%= profile.social_links.github %>" type="text" name="github" placeholder="Github" class="uk-form-width-medium">
         </div>
       </div>
 
       <div class="uk-form-row">
-        <label for="link_two" class="uk-form-label">Link two:</label>
+        <label for="wechat" class="uk-form-label">Wechat:</label>
         <div class="uk-form-controls">
-          <input type="text" name="link_two" placeholder="social link two" class="uk-form-width-medium">
+          <input value="<%= profile.social_links.wechat %>" type="text" name="wechat" placeholder="Wechat" class="uk-form-width-medium">
         </div>
       </div>
 
       <div class="uk-form-row">
-        <label for="link_three" class="uk-form-label">Link three:</label>
+        <label for="twitter" class="uk-form-label">Twitter:</label>
         <div class="uk-form-controls">
-          <input type="text" name="link_three" placeholder="social link three" class="uk-form-width-medium">
+          <input value="<%= profile.social_links.twitter %>" type="text" name="twitter" placeholder="Twitter" class="uk-form-width-medium">
         </div>
       </div>
 
       <div class="uk-form-row">
-        <label for="link_four" class="uk-form-label">Link four:</label>
+        <label for="facebook" class="uk-form-label">Facebook:</label>
         <div class="uk-form-controls">
-          <input type="text" name="link_four" placeholder="social link four" class="uk-form-width-medium">
+          <input value="<%= profile.social_links.facebook %>" type="text" name="facebook" placeholder="Facebook" class="uk-form-width-medium">
         </div>
       </div>
 
       <div class="uk-form-row">
         <label for="contact" class="uk-form-label">Contact:</label>
         <div class="uk-form-controls">
-          <input type="text" name="contact" placeholder="phone number" class="uk-form-width-medium">
+          <input value="<%= profile.contact %>" type="text" name="contact" placeholder="phone number" class="uk-form-width-medium">
         </div>
       </div>
 

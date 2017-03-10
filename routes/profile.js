@@ -7,7 +7,13 @@ const Profile = require('../models/profile');
 
 // get create profile page
 router.get('/update', (req, res) => {
-  res.render('update_profile');
+  // TODO: find user document(not profile table)
+  // const id = req.cookies.user;
+  const id = '58c16cc72e71cb54c19d96e2';
+  Profile.findOne({ _id: id }, (err, profile) => {
+    if (err) res.send(err);
+    res.render('update_profile', { profile });
+  });
 });
 
 // create profile
@@ -17,15 +23,20 @@ router.post('/create', checkLogin, (req, res) => {
     name: formValue.name,
     gender: formValue.gender,
     introduction: formValue.introduction,
-    social_link1: formValue.link_one,
-    social_link2: formValue.link_two,
-    social_link3: formValue.link_three,
-    social_link4: formValue.link_four,
+    social_links: {
+      github: formValue.github,
+      wechat: formValue.wechat,
+      twitter: formValue.twitter,
+      facebook: formValue.facebook,
+    },
     contact: formValue.contact,
   };
 
-  Profile.create(profile, (err) => {
-    if (err) res.send(err.message);
+  const query = { _id: req.cookies.user };
+  // TODO: Should be fixed
+  Profile.update(query, { $set: { profile } }, (err, result) => {
+    if (err) res.send(err);
+    console.log(result);
     res.render('index');
   });
 });
