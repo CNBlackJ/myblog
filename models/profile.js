@@ -9,6 +9,7 @@ const schema = {
   introduction: String,
   social_links: Object,
   contact: String,
+  modifiedDate: Date,
 };
 
 const profileSchema = mongoose.Schema(schema);

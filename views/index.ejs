@@ -10,7 +10,7 @@
 <div class="uk-grid">
   <div class="uk-container-center">
     <h1>
-      It is my name.
+      <%= profile.name %>
     </h1>
   </div>
 </div>
@@ -18,14 +18,14 @@
 <div class="uk-grid">
   <div class="uk-container-center">
     <span>
-      I am a coder,in GZ.
+      <%= profile.introduction %>
     </span>
   </div>
 </div>
 
 <div class="uk-grid">
   <div class="uk-container-center">
-    <a href="https://github.com/CNBlackJ" class="uk-icon-hover uk-icon-large uk-icon-github"></a>
+    <a href="<%= profile.social_links.github %>" class="uk-icon-hover uk-icon-large uk-icon-github"></a>
     <a href="" class="uk-icon-hover uk-icon-large uk-icon-wechat"></a>
     <a href="" class="uk-icon-hover uk-icon-large uk-icon-twitter"></a>
     <a href="" class="uk-icon-hover uk-icon-large uk-icon-facebook"></a>
