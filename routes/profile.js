@@ -17,27 +17,24 @@ router.get('/update', (req, res) => {
 });
 
 // create profile
-router.post('/create', checkLogin, (req, res) => {
+router.post('/update', checkLogin, (req, res) => {
   const formValue = req.body;
+  // const id = req.cookies.user;
+  const id = '58c16cc72e71cb54c19d96e2';
+
   const profile = {
     name: formValue.name,
     gender: formValue.gender,
     introduction: formValue.introduction,
-    social_links: {
-      github: formValue.github,
-      wechat: formValue.wechat,
-      twitter: formValue.twitter,
-      facebook: formValue.facebook,
-    },
+    'social_links.github': formValue.github,
+    'social_links.wechat': formValue.wechat,
+    'social_links.twitter': formValue.twitter,
+    'social_links.facebook': formValue.facebook,
     contact: formValue.contact,
   };
 
-  const query = { _id: req.cookies.user };
-  // TODO: Should be fixed
-  Profile.update(query, { $set: { profile } }, (err, result) => {
-    if (err) res.send(err);
-    console.log(result);
-    res.render('index');
+  Profile.update({ _id: id }, { $set: profile }, (err) => {
+    if (err) res.send(err.message);
   });
 });
 
