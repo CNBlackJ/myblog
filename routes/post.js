@@ -7,7 +7,7 @@ const marked = require('marked');
 const checkLogin = require('../lib/check').checkLogin;
 const Post = require('../models/post');
 
-/* GET posts page. */
+// get posts page
 router.get('/', async (req, res) => {
   const posts = await Post.find({}, { __v: 0 }).limit(10);
   const isAdmin = !!req.cookies.user;
@@ -65,7 +65,7 @@ router.post('/:id/edit', (req, res) => {
 });
 
 // delete post
-router.get('/:id/delete', async (req, res) => {
+router.get('/:id/delete', (req, res) => {
   const id = req.params.id;
   Post.findByIdAndRemove(id, (err) => {
     if (err) res.send(err.message);

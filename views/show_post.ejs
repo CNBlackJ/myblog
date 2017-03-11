@@ -1,6 +1,6 @@
 <%- include('_header') %>
 
-<script src="/marked/lib/marked.js"></script>
+<%# <script src="/marked/lib/marked.js"></script>%>
 <link rel="stylesheet" href="/stylesheets/show_post.css">
 
 <div class="uk-grid">
@@ -9,7 +9,7 @@
         <h1 class="uk-article-title">
           <%= post.title %>
         </h1>
-        <p class="uk-article-meta">Black_J | <%= post.createdDate %></p>
+        <p class="uk-article-meta"><%= post.author %> | <%= post.createdDate %></p>
         <%- post.content %>
     </article>
   </div>
