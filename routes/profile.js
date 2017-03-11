@@ -7,9 +7,9 @@ const Profile = require('../models/profile');
 
 // get create profile page
 router.get('/update', (req, res) => {
-  // TODO: find user document(not profile table)
   // const id = req.cookies.user;
   const id = '58c16cc72e71cb54c19d96e2';
+
   Profile.findOne({ _id: id }, (err, profile) => {
     if (err) res.send(err);
     res.render('update_profile', { profile });
@@ -21,7 +21,6 @@ router.post('/update', checkLogin, (req, res) => {
   const formValue = req.body;
   // const id = req.cookies.user;
   const id = '58c16cc72e71cb54c19d96e2';
-
   const profile = {
     name: formValue.name,
     gender: formValue.gender,

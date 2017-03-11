@@ -22,12 +22,14 @@ router.get('/create', checkLogin, (req, res) => {
 
 // create post
 router.post('/create', checkLogin, (req, res) => {
-  const title = req.body.title;
-  const author = 'Black_J';
-  const content = req.body.content;
-  const published = req.body.published;
-  const createdDate = moment(Date.now()).format('MMM Do YYYY');
-  const post = { title, content, author, published, createdDate };
+  const post = {
+    title: req.body.title,
+    author: 'Black_J',
+    content: req.body.content,
+    published: req.body.published,
+    createdDate: moment(Date.now()).format('MMM Do YYYY'),
+  };
+
   Post.create(post, (err, result) => {
     if (err) res.send(err.message);
     res.redirect(`/posts/${result._id}`);
@@ -37,6 +39,7 @@ router.post('/create', checkLogin, (req, res) => {
 // show post
 router.get('/:id', (req, res) => {
   const id = req.params.id;
+
   Post.find({ _id: id }, { __V: 0 }, (err, result) => {
     const post = result[0]._doc;
     post.content = marked(post.content);
@@ -47,6 +50,7 @@ router.get('/:id', (req, res) => {
 // get edit post page
 router.get('/:id/edit', (req, res) => {
   const id = req.params.id;
+
   Post.find({ _id: id }, { __V: 0 }, (err, result) => {
     if (err) res.send(err.message);
     const post = result[0]._doc;
@@ -57,6 +61,7 @@ router.get('/:id/edit', (req, res) => {
 // edit post
 router.post('/:id/edit', (req, res) => {
   const id = req.params.id;
+
   Post.find({ _id: id }, { __V: 0 }, (err, result) => {
     const post = result[0]._doc;
     post.content = marked(post.content);
@@ -67,6 +72,7 @@ router.post('/:id/edit', (req, res) => {
 // delete post
 router.get('/:id/delete', (req, res) => {
   const id = req.params.id;
+
   Post.findByIdAndRemove(id, (err) => {
     if (err) res.send(err.message);
     res.redirect('/posts');

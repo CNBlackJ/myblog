@@ -9,6 +9,7 @@ const User = require('../models/user');
 router.get('/', (req, res) => {
   // const id = req.cookies.user;
   const id = '58c16cc72e71cb54c19d96e2';
+
   Profile.findOne({ _id: id }, (err, profile) => {
     if (err) res.send(err);
     res.render('index', { profile });
@@ -41,11 +42,10 @@ router.get('/signup', (req, res) => {
 
 // register a new user
 router.post('/signup', (req, res) => {
-  const formValue = req.body;
   const user = {
-    name: formValue.name,
-    email: formValue.email,
-    passwd: formValue.password,
+    name: req.body.name,
+    email: req.body.email,
+    passwd: req.body.password,
   };
 
   User.create(user, (err, response) => {
