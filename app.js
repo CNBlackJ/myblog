@@ -29,7 +29,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // use cookie for login
 // app.use(express.cookieParser());
-app.use(cookieSession({ secret: 'secret', cookie: { maxAge: 60 * 60 * 100 } }));
+app.use(cookieSession({ secret: 'secret', cookie: { maxAge: 60 } }));
 
 routes(app);
 

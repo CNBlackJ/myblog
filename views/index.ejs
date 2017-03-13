@@ -1,5 +1,6 @@
 <%- include('_header') %>
 <link rel='stylesheet' href='/stylesheets/index.css' />
+<script src="/javascripts/components/lightbox.min.js"></script>
 
 <div class="uk-grid margin-top-45">
   <div class="uk-container-center">
@@ -26,9 +27,9 @@
 <div class="uk-grid">
   <div class="uk-container-center">
     <a href="<%= profile.social_links.github %>" class="uk-icon-hover uk-icon-large uk-icon-github"></a>
-    <a href="" class="uk-icon-hover uk-icon-large uk-icon-wechat"></a>
-    <a href="" class="uk-icon-hover uk-icon-large uk-icon-twitter"></a>
-    <a href="" class="uk-icon-hover uk-icon-large uk-icon-facebook"></a>
+    <a href="images/Wechat.JPG" data-uk-lightbox title="using wechat to scan." class="uk-icon-hover uk-icon-large uk-icon-wechat"></a>
+    <a href="<%= profile.social_links.twitter %>" class="uk-icon-hover uk-icon-large uk-icon-twitter"></a>
+    <a href="<%= profile.social_links.facebook %>" class="uk-icon-hover uk-icon-large uk-icon-facebook"></a>
   </div>
 </div>
 
